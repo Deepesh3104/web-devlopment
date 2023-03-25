@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Insurance Fraud Detection</title>
+	<style>
+		h1 {
+			font-size: 36px;
+			margin: 50px 0;
+		}
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		input {
+			padding: 10px;
+			margin: 10px 0;
+			width: 100%;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			font-size: 18px;
+			box-sizing: border-box;
+		}
+		button {
+			padding: 10px;
+			margin: 10px 0;
+			width: 100%;
+			border-radius: 5px;
+			background-color: #4CAF50;
+			color: #fff;
+			font-size: 18px;
+			cursor: pointer;
+		}
+		.result {
+			margin: 50px 0;
+			font-size: 24px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Insurance Fraud Detection</h1>
+	<form onsubmit="return detectFraud()">
+		<label for="claim_amount">Claim Amount:</label>
+		<input type="number" id="claim_amount" name="claim_amount" placeholder="Enter claim amount...">
+		<label for="policy_holder_age">Policy Holder Age:</label>
+		<input type="number" id="policy_holder_age" name="policy_holder_age" placeholder="Enter policy holder age...">
+		<label for="is_policy_holder_married">Is Policy Holder Married?</label>
+		<select id="is_policy_holder_married" name="is_policy_holder_married">
+			<option value="yes">Yes</option>
+			<option value="no">No</option>
+		</select>
+		<button type="submit">Detect Fraud</button>
+	</form>
+	<div class="result" id="result"></div>
+	<script>
+		function detectFraud() {
+			// Get input values
+			let claimAmount = document.getElementById("claim_amount").value;
+			let policyHolderAge = document.getElementById("policy_holder_age").value;
+			let isPolicyHolderMarried = document.getElementById("is_policy_holder_married").value;
+
+			// Check for fraud
+			if (claimAmount > 10000 && policyHolderAge < 25 && isPolicyHolderMarried === "no") {
+				document.getElementById("result").innerHTML = "Fraud detected!";
+			} else {
+				document.getElementById("result").innerHTML = "No fraud detected.";
+			}
+
+			// Prevent form submission
+			return false;
+		}
+	</script>
+</body>
+</html>
